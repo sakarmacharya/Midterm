@@ -15,7 +15,7 @@ function QuotationTable({ data, setDataItems }) {
   useEffect(() => {
     let sum = 0;
     const z = data.map((v, i) => {
-      let amount = v.qty * v.ppu;
+      let amount = v.qty * (v.ppu - v.discountRef);
       sum += amount;
       return (
         <tr key={i}>
@@ -23,11 +23,11 @@ function QuotationTable({ data, setDataItems }) {
           <td style={styles.textCenter}>{v.qty}</td>
           <td>{v.item}</td>
           <td style={styles.textRight}>{numberWithCommas(v.ppu)}</td>
+          <td style={styles.textRight}>{numberWithCommas(v.discountRef)}</td>
           <td style={styles.textRight}>{numberWithCommas(amount)}</td>
         </tr>
       );
     });
-
     setDataRows(z);
     setTotalPrice(sum);
   }, [data]);

@@ -9,6 +9,7 @@ function App() {
 
   const itemRef = useRef();
   const ppuRef = useRef();
+  const discountRef = useRef();
   const qtyRef = useRef();
 
   //const [dataItems, setDataItems] = useState([]);
@@ -34,6 +35,7 @@ function App() {
       pid: pid,
       item: product.name,
       ppu: ppuRef.current.value,
+      discountRef: discountRef.current.value,
       qty: qtyRef.current.value,
     };
 
@@ -75,12 +77,12 @@ function App() {
                 ref={ppuRef}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formPrice">
+            <Form.Group className="mb-3" controlId="formDiscount">
               <Form.Label>Discount</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Price Per Unit"
-                ref={ppuRef}
+                placeholder="Discount per unit"
+                ref={discountRef}
               />
             </Form.Group>
 
@@ -96,9 +98,11 @@ function App() {
         </Col>
         <Col>
           <QuotationTable data={dataItems} setDataItems={setDataItems} />
+          console.log(setDataItems)
         </Col>
       </Row>
     </Container>
+    
   );
 }
 
